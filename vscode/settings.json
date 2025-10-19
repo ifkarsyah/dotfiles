@@ -1,0 +1,96 @@
+{
+  "workbench.editorAssociations": {
+    "*.ipynb": "jupyter-notebook"
+  },
+  "workbench.colorTheme": "Default Dark+",
+  "editor.largeFileOptimizations": false,
+  "editor.minimap.enabled": false,
+  "editor.fontSize": 15,
+  "editor.fontFamily": "'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+  "editor.fontLigatures": true,
+  "editor.tabSize": 2,
+  "settingsSync.ignoredSettings": [
+    "-jupyter.alwaysTrustNotebooks"
+  ],
+  "gitlens.defaultDateFormat": null,
+  "gitlens.defaultTimeFormat": null,
+  "gitlens.defaultDateShortFormat": null,
+  "terminal.integrated.fontFamily": "monospace",
+  "jupyter.alwaysTrustNotebooks": true,
+  "terminal.integrated.tabs.enabled": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "files.exclude": {
+    "**/.classpath": true,
+    "**/.project": true,
+    "**/.settings": true,
+    "**/.factorypath": true
+  },
+  "redhat.telemetry.enabled": false,
+  "java.project.importOnFirstTimeStartup": "automatic",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "notebook.cellToolbarLocation": {
+    "default": "right",
+    "jupyter-notebook": "left"
+  },
+  "files.autoSave": "afterDelay",
+  "yaml.customTags": [
+    "!And",
+    "!And sequence",
+    "!If",
+    "!If sequence",
+    "!Not",
+    "!Not sequence",
+    "!Equals",
+    "!Equals sequence",
+    "!Or",
+    "!Or sequence",
+    "!FindInMap",
+    "!FindInMap sequence",
+    "!Base64",
+    "!Join",
+    "!Join sequence",
+    "!Cidr",
+    "!Ref",
+    "!Sub",
+    "!Sub sequence",
+    "!GetAtt",
+    "!GetAZs",
+    "!ImportValue",
+    "!ImportValue sequence",
+    "!Select",
+    "!Select sequence",
+    "!Split",
+    "!Split sequence"
+  ],
+  "aws.profile": "profile:default",
+  "aws.telemetry": false,
+  "security.workspace.trust.untrustedFiles": "open",
+  "editor.inlineSuggest.enabled": true,
+  "githubPullRequests.pullBranch": "never",
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.metals": true,
+    "**/.ammonite": true
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "[python]": {
+    "editor.formatOnType": true
+  },
+  "tabnine.experimentalAutoImports": true,
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "vs-kubernetes": {
+    "vs-kubernetes.minikube-show-information-expiration": "2025-05-19T12:42:12.381Z"
+  },
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false
+  },
+  "docker.extension.enableComposeLanguageServer": false,
+  "workbench.editor.empty.hint": "hidden",
+  "diffEditor.ignoreTrimWhitespace": false
+}
