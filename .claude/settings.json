@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls *)",
+      "Bash(head *)",
+      "Bash(cat *)",
+
+      "Bash(curl *)",
+      "WebFetch(domain:*)",
+
+      "Bash(python3 *)",
+      "Bash(go *)"
+    ]
+  }
+}
