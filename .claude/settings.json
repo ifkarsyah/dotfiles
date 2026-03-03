@@ -1,15 +1,39 @@
 {
   "permissions": {
+    "additionalDirectories": ["~/.claude"],
     "allow": [
+      "Read(./)",
+      "Write(./)",
+
       "Bash(ls *)",
       "Bash(head *)",
       "Bash(cat *)",
+      "Bash(grep*)",
+      "Bash(find*)",
+      "Bash(jq*)",
 
       "Bash(curl *)",
       "WebFetch(domain:*)",
+      
+      "Bash(git status*)",
+      "Bash(git push)",
 
       "Bash(python3 *)",
       "Bash(go *)"
+    ],
+    "deny": [
+      "Read(.env*)",
+
+      "Read(../)",
+      "Write(../)",
+      "Read(/)",
+      "Write(/)",
+      "Bash(rm *)",
+      "Bash(mv *)",
+      "Bash(sudo *)",
+      
+      "Bash(git push:*)",
+      "Bash(git force-push *)"
     ]
   }
 }
