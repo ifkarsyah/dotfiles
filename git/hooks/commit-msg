@@ -1,0 +1,38 @@
+#!/bin/bash
+
+# Commit message validation hook
+# Ensures commit messages follow conventional commit format with prefixes:
+# feat, refactor, or fix
+
+COMMIT_MSG_FILE=$1
+COMMIT_MSG=$(cat "$COMMIT_MSG_FILE")
+
+# Regex pattern for conventional commits
+# Supports: feat:, fix:, refactor: with optional scope like feat(scope):
+PATTERN="^(feat|fix|refactor)(\(.+\))?: .+"
+
+# Get the first line of the commit message
+FIRST_LINE=$(echo "$COMMIT_MSG" | head -n1)
+
+# Validate the commit message
+if ! echo "$FIRST_LINE" | grep -qE "$PATTERN"; then
+    echo "Error: Invalid commit message format!"
+    echo ""
+    echo "Commit message must start with one of:"
+    echo "  feat:     A new feature"
+    echo "  fix:      A bug fix"
+    echo "  refactor: Code refactoring"
+    echo ""
+    echo "Examples:"
+    echo "  feat: add user authentication"
+    echo "  fix: resolve login timeout issue"
+    echo "  refactor: simplify payment logic"
+    echo "  feat(api): add new endpoint"
+    echo ""
+    echo "Your message was:"
+    echo "  $FIRST_LINE"
+    echo ""
+    exit 1
+fi
+
+exit 0
