@@ -78,3 +78,9 @@ Since `.git/hooks/` isn't tracked by Git, teams typically:
 ### Important Note
 
 Client-side hooks are **not enforced** — developers can skip them with `--no-verify`. For enforcement, you need server-side hooks or CI/CD checks.
+
+### What not to do
+- Don’t make hooks slow.
+- Don’t over-block.
+- Don’t add 15 hooks just to look smart.
+If hooks are annoying, you’ll bypass them.

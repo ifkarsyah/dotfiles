@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -euo pipefail
+echo "Running pre-push checks..."
+
+# Guidance: Think what will be slow in CI server. 
+
+# 1. Test
+# Python  -> pytest
+# Java    -> ./mvnw test
+# Go      -> go test ./...
+# Rust    -> cargo test
+
+# 2. Block direct push to "main"
+branch=$(git rev-parse --abbrev-ref HEAD)
+if [ "$branch" = "main" ]; then
+  echo "Direct push to main is blocked"
+  exit 1
+fi

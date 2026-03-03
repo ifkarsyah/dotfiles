@@ -1,0 +1,39 @@
+#!/bin/bash
+
+set -euo pipefail
+echo "Running pre-commit checks..."
+
+# 1. Format & Lint
+## format = mis-indentation, adjust spacing, sort import
+## lint = check for unused variable, function
+if command -v ruff >/dev/null 2>&1; then
+  ruff check .
+fi
+# This might be different depending on the project programming language
+# Python      -> black, ruff
+# Go          -> go fmt
+# Java        -> use IDE
+# Rust        -> cargo fmt && cargo clippy)
+# JavaScript  -> npx prettier && npx eslint .
+# Scala       -> scalafmt && scalafix
+
+
+# 2. Prevent sensitive file names
+if git diff --cached --name-only | grep -E '\.env($|\.)|\.pem$|\.key$|id_rsa|id_dsa'; then
+  echo "Attempting to commit sensitive file"
+  exit 1
+fi
+
+# 3. Prevent large files (>5MB)
+max_size=5242880
+for file in $(git diff --cached --name-only); do
+  if [ -f "$file" ]; then
+    size=$(wc -c <"$file")
+    if [ "$size" -gt "$max_size" ]; then
+      echo "$file is larger than 5MB"
+      exit 1
+    fi
+  fi
+done
+
+echo "Pre-commit checks passed"
