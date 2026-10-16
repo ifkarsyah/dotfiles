@@ -59,6 +59,6 @@ Templates for each file are in `assets/`. Copy and fill them, do not write from 
 - [ ] Every delta file has `source_url` and `verified_at`, and the page was actually read (note partial reads).
 - [ ] `index.md` rows match delta files and status says verified or not.
 - [ ] No file written from general knowledge is presented as verified.
-- [ ] No em dashes: `grep -rnP "\x{2014}" claude/.claude/skills/tech-<tool>` prints nothing.
+- [ ] No em dashes: `grep -rn $'\xe2\x80\x94' claude/.claude/skills/tech-<tool>` prints nothing (byte pattern, works in any locale).
 - [ ] `TODO.md` updated (remove the finished row, add new follow-ups).
 - [ ] PR description lists what was not verified.
