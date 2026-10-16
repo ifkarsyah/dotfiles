@@ -32,8 +32,10 @@
       "Bash(mv *)",
       "Bash(sudo *)",
       
-      "Bash(git push:*)",
       "Bash(git force-push *)"
+    ],
+    "ask": [
+      "Bash(git push:*)"
     ]
   },
   "hooks": {
