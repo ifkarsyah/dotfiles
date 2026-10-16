@@ -44,6 +44,7 @@ Minor-version differences inside a line go in that line's delta file under "Mino
 
 - Add a delta file only for a line whose behavior diverges. Not one per minor release.
 - A delta file holds differences only: removed or renamed config keys, changed defaults, removed APIs, new features worth using. Past about 150 lines, trim.
-- Only write a row for a version you have run or whose release notes you read. Record the source and date.
+- Only write a row for a version you have run or whose release notes you read.
+- Every delta file starts with frontmatter holding `url` (the release notes page read) and `verified_at` (date). Update both when you re-check.
 - When a project bumps Kafka, update the Status column and date here.
 - Source of truth: `https://kafka.apache.org/<NN>/getting-started/upgrade/` (for example `/43/`).
