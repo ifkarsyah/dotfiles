@@ -64,7 +64,7 @@ stow docker
 stow --no-folding claude
 ```
 
-`claude` needs `--no-folding`. Without it, Stow may link the whole `~/.claude` folder into this repo, and Claude Code's history and caches would end up here. With it, only the individual skill files are linked.
+`claude` needs `--no-folding`. Without it, Stow may link the whole `~/.claude` folder into this repo, and Claude Code's history and caches would end up here. With it, only the individual files (skills, hooks, settings) are linked.
 
 ✅ This will create symlinks in your home directory pointing to the files in this repository.
 
@@ -77,6 +77,7 @@ For example:
 ~/.ssh/config -> ~/dotfiles/ssh/.ssh/config
 ~/.docker/config.json -> ~/dotfiles/docker/.docker/config.json
 ~/.claude/skills/<skill>/SKILL.md -> ~/dotfiles/claude/.claude/skills/<skill>/SKILL.md
+~/.claude/hooks/guard_git_push.py -> ~/dotfiles/claude/.claude/hooks/guard_git_push.py
 ```
 
 If you want to remove the symlinks created by Stow:
@@ -85,3 +86,15 @@ stow -D git
 stow -D vim
 ```
 This removes the symlinks without touching the repository files.
+
+### Claude Code hooks
+
+`claude/.claude/settings.json` registers three `PreToolUse` hooks. They run before Claude edits a file or runs a shell command, and exit code 2 blocks the action:
+
+| Hook | Applies to | What it blocks |
+| --- | --- | --- |
+| `guard_git_push.py` | `Bash` | Pushes to `main` or `master`, force pushes, `--all` and `--mirror` |
+| `block_secrets.py` | `Write`, `Edit`, `MultiEdit`, `NotebookEdit` | New content that matches a known secret format (AWS, GitHub, Anthropic, OpenAI, ElevenLabs, Slack, Google, private keys) |
+| `protect_files.py` | `Write`, `Edit`, `MultiEdit`, `NotebookEdit` | `.env` files, `.git/`, lock files, key and certificate files, credential files |
+
+These are guardrails, not a security boundary. The edit hooks do not see shell redirection such as `echo x > .env`, and the secret check only knows common formats. Keep GitHub branch protection on `main` and a real scanner such as gitleaks in the pre-commit hook. If a script hits an unexpected error it lets the action through and prints the error.
