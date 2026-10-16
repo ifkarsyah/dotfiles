@@ -1,16 +1,16 @@
 ---
-name: "lang-japanese-visual-vocabulary-adjective"
+name: "lang-japanese-visual-vocab-adjective"
 description: "Build a visual Japanese adjective-learning artifact: opposite pairs with phrases and sentences, a table of every form, and a conjugation drill, with furigana and Kokoro audio."
 ---
 
 # Japanese adjectives artifact (pairs, context, forms, drill)
 
-Sibling of `lang-japanese-visual-vocabulary-noun` (places) and `-verb` (daily routines). Same page shell, audio pipeline and saved progress. Templates live in the Project "Learn 日本語" under `visual-vocab-adjective/` (adjectives.js, conj.js, app.js, extra.css, build.py, dump.js). Shared pieces (page head and CSS tokens, `audio.py`) live under `visual-vocab/`; `template.html` there is the base page. Read those files with project_read before building. Paths inside build.py and dump.js are absolute to an old scratchpad, so change them.
+Renamed from `lang-japanese-visual-vocabulary-adjective`. Siblings: `lang-japanese-visual-vocab-noun` (places and situations) and `lang-japanese-visual-vocab-verb` (daily routines). Same page shell, audio pipeline and saved progress. Strategy for choosing what to learn: `lang-general-mining-vocabulary`. Templates live in the Project "Learn 日本語" under `visual-vocab-adjective/` (adjectives.js, conj.js, app.js, extra.css, build.py, dump.js). Shared pieces (page head and CSS tokens, `audio.py`) live under `visual-vocab/`; `template.html` there is the base page. Read those files with project_read before building. Paths inside build.py and dump.js are absolute to an old scratchpad, so change them.
 
 ## Learner rules
 - No romaji. Furigana as `{漢字|かんじ}` markup, with a toggle.
 - Code examples in Python, notes in Markdown, few em dashes.
-- Say plainly when a pairing, reading or nuance is doubtful. The audio is made by Kokoro and has not been checked by ear; say so.
+- Say plainly when a pairing, reading or nuance is doubtful. Known loose pairs in the first build: 弱い雨 for "light rain", and 多い/少ない has no direct noun phrase. The audio is made by Kokoro and has not been checked by ear; say so.
 
 ## Data (adjectives.js)
 `TABS` is a list of themed tabs: `{id, tab, tabJp, jp, en, note, pairs:[[A, A], ...]}`. Each adjective is `A(w, type, en, pic, np, npEn, s, sEn, note)`:
@@ -34,7 +34,7 @@ Tabs: one per theme, then `All the forms` (rule cards, chip picker for every adj
 
 ## Workflow
 1. Write adjectives.js; run `node dump.js` in that folder. It checks pair size, type, い endings, latin letters and brace balance, and writes words.json and overrides.json.
-2. Generate audio in the background (about 1.2 clips per second, 760 clips takes about 10 minutes): `python3 -I audio.py <dir>` using the Kokoro setup from the noun skill (jf_alpha, speed 0.9, spoken text is the kana reading). Check the log says no words without a clip.
+2. Generate audio in the background (about 1.2 clips per second, 760 clips takes about 10 minutes): `python3 -I audio.py <dir>` using the Kokoro setup from the noun skill (jf_alpha, speed 0.9, spoken text is the kana reading; replace "・" with "、"). Check the log says no words without a clip.
 3. `python3 build.py`, then test with Playwright: tab count, pair count, learned counter, quiz reveal, forms tab, drill answer, a phone-width screenshot. Fonts and audio-data.js 404s are expected locally.
 4. Publish with Artifact: the file, `files` mapping `audio-data.js`, icon, description, and capabilities db and user. Do not paste the URL in the reply.
 5. Report honestly: audio unchecked by ear, any loose pairs, emoji instead of drawn scenes.
