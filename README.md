@@ -61,7 +61,10 @@ stow vim
 stow vscode
 stow ssh
 stow docker
+stow --no-folding claude
 ```
+
+`claude` needs `--no-folding`. Without it, Stow may link the whole `~/.claude` folder into this repo, and Claude Code's history and caches would end up here. With it, only the individual skill files are linked.
 
 ✅ This will create symlinks in your home directory pointing to the files in this repository.
 
@@ -73,6 +76,7 @@ For example:
 ~/Library/Application Support/Code/User/settings.json -> ~/dotfiles/vscode/Library/Application Support/Code/User/settings.json
 ~/.ssh/config -> ~/dotfiles/ssh/.ssh/config
 ~/.docker/config.json -> ~/dotfiles/docker/.docker/config.json
+~/.claude/skills/<skill>/SKILL.md -> ~/dotfiles/claude/.claude/skills/<skill>/SKILL.md
 ```
 
 If you want to remove the symlinks created by Stow:
