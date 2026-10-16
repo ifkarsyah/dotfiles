@@ -20,7 +20,7 @@ import sys
 
 PROTECTED = {"main", "master"}
 SEGMENT_SPLIT = re.compile(r"&&|\|\||;|\||\n")
-WRAPPERS = {"env", "command", "time", "nohup", "exec"}
+WRAPPERS = {"env", "command", "time", "nohup", "exec", "sudo", "nice", "xargs"}
 SHELLS = {"bash", "sh", "zsh"}
 FLAGS_WITH_VALUE = {"-o", "--push-option", "--repo", "--receive-pack", "--exec"}
 
