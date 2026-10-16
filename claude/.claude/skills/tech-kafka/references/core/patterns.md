@@ -26,12 +26,12 @@ Status: written from general knowledge, NOT checked against the docs line by lin
 - `compact`: keeps the latest value per key, good for changelogs and current-state topics. A null value (tombstone) deletes a key after compaction.
 - Compaction is not immediate and does not guarantee only one record per key at read time.
 
-## CDC topics (Debezium)
+## Changelog topics (Kafka side only)
 
-- One topic per source table, keyed by primary key so updates for the same row stay ordered.
+- One topic per source table or entity, keyed by the entity's primary key so updates for the same row stay ordered.
 - Keep tombstones if downstream relies on compaction.
-- Plan schema evolution with a schema registry and compatibility rules before the first deployment.
-- Snapshot plus streaming overlap can emit duplicates, so make consumers idempotent.
+- Make consumers idempotent, since duplicates can appear.
+- Tool-specific behavior (Debezium, Connect, Schema Registry) is out of scope here.
 
 ## Consumers
 

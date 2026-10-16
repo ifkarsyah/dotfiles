@@ -1,6 +1,6 @@
 ---
 name: tech-kafka
-description: Apache Kafka design, tuning and debugging. Use for producers, consumers, topics, partitioning, consumer lag, rebalancing, KRaft, upgrades between Kafka versions, Kafka Connect and Debezium CDC, Schema Registry, exactly-once and transactions. Detects the Kafka version used in the current project first. Not for Flink job logic (use tech-flink) or Spark (use tech-spark).
+description: Apache Kafka producers, consumers, topics, partitioning, consumer lag, rebalancing, KRaft, and upgrades between Kafka versions (3.x and 4.x). Detects the Kafka version used in the current project first. Not for Flink or Spark job logic, Kafka Connect, Debezium or Schema Registry.
 ---
 
 # Kafka
@@ -30,7 +30,7 @@ Version-aware guidance. Kafka behavior, defaults and removed APIs differ between
 - Prefer KRaft concepts for new designs. ZooKeeper mode only exists on 3.x.
 - Config names in answers must be exact. If unsure, check the docs instead of guessing.
 - Keep answers short. Point to a reference file instead of pasting from it.
-- When Kafka is only a source or sink (Flink, Spark, Connect), keep Kafka-side advice here and hand the rest to the relevant `tech-*` skill.
+- Neighbors: for Flink, Spark, Kafka Connect, Debezium or Schema Registry, answer only the Kafka side here. Do not treat this skill's content as vetted for those tools. Name a dedicated skill only if it is listed as available.
 
 ## Maintaining this skill
 
