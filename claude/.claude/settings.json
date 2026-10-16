@@ -35,5 +35,22 @@
       "Bash(git push:*)",
       "Bash(git force-push *)"
     ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          { "type": "command", "command": "python3 ~/.claude/hooks/guard_git_push.py" }
+        ]
+      },
+      {
+        "matcher": "Write|Edit|MultiEdit|NotebookEdit",
+        "hooks": [
+          { "type": "command", "command": "python3 ~/.claude/hooks/block_secrets.py" },
+          { "type": "command", "command": "python3 ~/.claude/hooks/protect_files.py" }
+        ]
+      }
+    ]
   }
 }
