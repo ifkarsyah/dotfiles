@@ -9,16 +9,32 @@ This repository contains my personal configuration files (dotfiles) for various 
 ## Structures
 ```
 dotfiles/
-├── git/           # gitconfig, gitignore, etc.
-├── shell/         # bashrc, zshrc, aliases
-├── vim/           # vimrc, plugins
-├── vscode/        # settings.json, extensions list
-├── ssh/           # config, keys (optional)
+├── claude/        # ~/.claude: settings, hooks, skills, global CLAUDE.md
 ├── docker/        # config.json
+├── git/           # gitconfig and git hooks
+├── shell/         # zsh and bash config
+├── ssh/           # config (never keys)
+├── vscode/        # settings.json, extensions list
+├── docs/          # learning notes, NOT stowed (see below)
+├── Brewfile
+├── install.sh
 └── README.md
 ```
 
-Each folder contains configuration files arranged so that the paths **mirror their target locations** in your home directory.
+Each **stow package** (every folder except `docs/`) contains configuration files arranged so that the paths **mirror their target locations** in your home directory.
+
+### Where do notes go?
+
+Notes about a tool go in `docs/<package>/`, never inside the package itself. Stow symlinks everything inside a package into `~`, so a note at `git/hooks.md` would show up as `~/hooks.md`. `docs/` is not a package, so it is never linked.
+
+```
+docs/
+├── claude/    # not created yet: skills, Claude Code hooks
+├── git/       # git internals, git hooks
+└── shell/     # bash best practices, set -euo pipefail
+```
+
+When you add a package `foo/`, put its notes in `docs/foo/`. Do not run `stow docs`.
 
 ---
 
@@ -57,7 +73,6 @@ Commit the updated Brewfile to your repo.
 ```bash
 stow git
 stow shell
-stow vim
 stow vscode
 stow ssh
 stow docker
@@ -72,7 +87,6 @@ For example:
 ```bash
 ~/.gitconfig -> ~/dotfiles/git/.gitconfig
 ~/.zshrc -> ~/dotfiles/shell/.zshrc
-~/.vimrc -> ~/dotfiles/vim/.vimrc
 ~/Library/Application Support/Code/User/settings.json -> ~/dotfiles/vscode/Library/Application Support/Code/User/settings.json
 ~/.ssh/config -> ~/dotfiles/ssh/.ssh/config
 ~/.docker/config.json -> ~/dotfiles/docker/.docker/config.json
@@ -83,7 +97,7 @@ For example:
 If you want to remove the symlinks created by Stow:
 ```bash
 stow -D git
-stow -D vim
+stow -D shell
 ```
 This removes the symlinks without touching the repository files.
 
